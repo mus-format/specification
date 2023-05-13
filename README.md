@@ -24,9 +24,6 @@ Foo{a: 300, b: true, c: "hi"}    MUS->    [216 4 1 4 104 105]
 Note that the object fields are encoded in order, first the first, then the 
 second, then third, and so on.
 
-If you need metadata, you can easily place it in your data type. A good example 
-of this can be found in the [Versioning](#versioning) section.
-
 # Format Features
 - All `uint` (`uint64`, `uint32`, `uint16`, `uint8`, `uint`), `int`, 
   `float` data types can be encoded in one of two ways: using Varint or Raw 
@@ -105,34 +102,40 @@ of this can be found in the [Versioning](#versioning) section.
   - [104 101 108 108 111 32 119 111 114 108 100] - string
   ```
 
+# Data Type Metadata
+You can place a data type metadata in front of the data. Like in the 
+[Versioning](#versioning) section.
+
 # Versioning
 MUS format does not have explicit versioning support. But you can always do 
 next:
 ```
-// Add version field.
-type TypeV1 {
-  version byte
-  ...
+const FooV1Type DataType = 1
+const FooV2Type DataType = 2
+
+type FooV1 {
+  // ...
 }
 
-type TypeV2 {
-  version byte
-  ...
+type FooV2 {
+  // ...
 }
 
-// Check version field before Unmarshal.
-switch buf[0] {
-  case 1:
-    typeV1, _, err = UnmarshalTypeV1(buf)
+dataType, err = UnmarshalDataType(buf)
+// ...
+// Check data type before Unmarshal.
+switch dataType {
+  case FooV1Type:
+    fooV1, err = UnmarshalFooV1(buf)
     // ...
-  case 2:
-    typeV2, _, err = UnmarshalTypeV2(buf)
+  case FooV2Type:
+    fooV2, err = UnmarshalFooV2(buf)
     // ...
   default:
-    return ErrUnsupportedVersion
+    return ErrUnsupportedDataType
 }
 ```
-Moreover, it is highly recommended to have a `version` field. With it, you 
+Moreover, it is highly recommended to use data type metadata. With it, you 
 will always be ready for changes in the type structure or MUS format.
 
 # Streaming
