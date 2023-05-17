@@ -144,3 +144,4 @@ type on the receiving side.
 
 # Serializers
 - [mus-go](https://github.com/mus-format/mus-go)
+- [mus-stream-go](https://github.com/mus-format/mus-stream-go)
