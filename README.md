@@ -102,7 +102,7 @@ second, then third, and so on.
   - [104 101 108 108 111 32 119 111 114 108 100] - string
   ```
 
-# Data Type Metadata
+# Data Type Metadata (DTM)
 You can place a data type metadata in front of the data. Like in the 
 [Versioning](#versioning) section.
 
@@ -110,8 +110,9 @@ You can place a data type metadata in front of the data. Like in the
 MUS format does not have explicit versioning support. But you can always do 
 next:
 ```
-const FooV1Type DataType = 1
-const FooV2Type DataType = 2
+// In this case DTM defines both the type and its version.
+const FooV1DTM = 1
+const FooV2DTM = 2
 
 type FooV1 {
   // ...
@@ -121,22 +122,27 @@ type FooV2 {
   // ...
 }
 
-dataType, err = UnmarshalDataType(buf)
+dtm, err = UnmarshalDTM(buf)
 // ...
-// Check data type before Unmarshal.
-switch dataType {
-  case FooV1Type:
+// Check DTM before Unmarshal.
+switch dtm {
+  case FooV1DTM:
     fooV1, err = UnmarshalFooV1(buf)
     // ...
-  case FooV2Type:
+  case FooV2DTM:
     fooV2, err = UnmarshalFooV2(buf)
     // ...
   default:
-    return ErrUnsupportedDataType
+    return ErrUnsupportedDTM
 }
 ```
-Moreover, it is highly recommended to use data type metadata. With it, you 
-will always be ready for changes in the type structure or MUS format.
+Moreover, it is highly recommended to use DTM. With it, you will always be ready
+for changes in the type structure or MUS format.
+
+Thus, the MUS format suggests to have only one "version" mark for the entire 
+type, instead of having a separate "version" mark for each field. With this 
+approach, we can send fewer bytes over the network or store fewer bytes on disk.
+And that's great because I/O is often a performance bottleneck.
 
 # Streaming
 MUS format is suitable for streaming, all we need to know for this is the data 
