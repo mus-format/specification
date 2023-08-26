@@ -104,10 +104,10 @@ second, then third, and so on.
 
 # Data Type Metadata (DTM)
 You can place a data type metadata in front of the data. Like in the 
-[Versioning](#versioning) section.
+[Data Versioning](#data-versioning) section.
 
-# Versioning
-MUS format does not have explicit versioning support. But you can always do 
+# Data Versioning
+MUS format does not have explicit data versioning support. But you can always do 
 next:
 ```
 // In this case DTM defines both the type and its version.
