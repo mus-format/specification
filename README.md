@@ -24,6 +24,16 @@ Foo{a: 300, b: true, c: "hi"}    MUS->    [216 4 1 4 104 105]
 Note that the object fields are encoded in order, first the first, then the 
 second, then third, and so on.
 
+# Motivation
+This approach provides:
+1. A simple serializer that can be implemented quite easily and quickly for any 
+   programming language.
+2. And as we know, simple products are much easier to maintain + they usually 
+   have fewer bugs.
+3. The small number of bytes required to encode data. This means we can send 
+   fewer bytes over the network or store fewer bytes on disk. And that's great 
+   because I/O is often a performance bottleneck.
+
 # Format Features
 - All `uint` (`uint64`, `uint32`, `uint16`, `uint8`, `uint`), `int`, 
   `float` data types can be encoded in one of two ways: using Varint or Raw 
@@ -140,9 +150,9 @@ Moreover, it is highly recommended to use DTM. With it, you will always be ready
 for changes in the type structure or MUS format.
 
 Thus, the MUS format suggests to have only one "version" mark for the entire 
-type, instead of having a separate "version" mark for each field. With this 
-approach, we can send fewer bytes over the network or store fewer bytes on disk.
-And that's great because I/O is often a performance bottleneck.
+type, instead of having a separate "version" mark for each field. And again, 
+with this approach, we can send fewer bytes over the network or store fewer 
+bytes on disk.
 
 # Streaming
 MUS format is suitable for streaming, all we need to know for this is the data 
