@@ -28,11 +28,11 @@ second, then third, and so on.
 This approach provides:
 1. A simple serializer that can be implemented quite easily and quickly for any 
    programming language.
-2. And as we know, simple products are much easier to maintain + they usually 
-   have fewer bugs.
-3. The small number of bytes required to encode data. This means we can send 
-   fewer bytes over the network or store fewer bytes on disk. And that's great 
-   because I/O is often a performance bottleneck.
+2. As we know, simple products are much easier to maintain + they usually have 
+   fewer bugs.
+3. And most importantly, the small number of bytes required to encode data. This
+   means we can send fewer bytes over the network or store fewer bytes on disk. 
+   And that's great because I/O is often a performance bottleneck.
 
 # Format Features
 - All `uint` (`uint64`, `uint32`, `uint16`, `uint8`, `uint`), `int`, 
