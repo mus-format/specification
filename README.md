@@ -150,8 +150,8 @@ Moreover, it is highly recommended to use DTM. With it, you will always be ready
 for changes in the type structure or MUS format.
 
 Thus, the MUS format suggests to have only one "version" mark for the entire 
-type, instead of having a separate "version" mark for each field. And again
-[motivation](#motivation).
+type, instead of having a separate "version" mark for each field. And again, the 
+motivation for this approach is described [here](#motivation).
 
 # Streaming
 MUS format is suitable for streaming, all we need to know for this is the data 
