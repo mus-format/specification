@@ -1,8 +1,8 @@
 # MUS Serialization Format
 The MUS (**M**arshal, **U**nmarshal, **S**ize) format, which by the way is a 
 binary format, tries to be as simple as possible. You won't find field names or 
-any other information in it besides values (with few exceptions, as 'nil' 
-pointer flag and length for string, list and map data types). So, for example, 
+any other information in it besides values (with few exceptions, such as the 
+'nil' pointer flag and length for variable-length data types). So, for example, 
 an object of type `Foo`:
 ```
 type Foo {
@@ -97,8 +97,8 @@ This approach provides:
   true    MUS->    [1]
   false    MUS->    [0]
   ```
-- Pointers are encoded with `nil` flag: `nil` pointer is encoded as `1`, not 
-  `nil` pointer as `0` + pointer value.
+- Pointers are encoded with the `nil` flag: the `nil` pointer is encoded as `1`,
+  not the `nil` pointer as `0` + pointer value.
   ```
   nil    MUS->    [1]
   , where
