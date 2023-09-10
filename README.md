@@ -1,9 +1,9 @@
 # MUS Serialization Format
-The MUS (**M**arshal, **U**nmarshal, **S**ize) format, which by the way is a 
-binary format, tries to be as simple as possible. You won't find field names or 
-any other information in it besides values (with few exceptions, such as the 
-'nil' pointer flag and length for variable-length data types). So, for example, 
-an object of type `Foo`:
+MUS (**M**arshal, **U**nmarshal, **S**ize) format, which by the way is a 
+binary format, tries to be as simple as possible. You won't find field names, 
+types or any other information in it besides values (with few exceptions, such 
+as the 'nil' pointer flag and length for variable-length data types). So, for 
+example, an object of type `Foo`:
 ```
 type Foo {
   a int
@@ -11,7 +11,7 @@ type Foo {
   c string
 }
 ```
-in MUS format may look like this:
+in the MUS format may look like this:
 ```
 Foo{a: 300, b: true, c: "hi"}    MUS->    [216 4 1 4 104 105]
 , where 
@@ -21,8 +21,8 @@ Foo{a: 300, b: true, c: "hi"}    MUS->    [216 4 1 4 104 105]
 - [104 105] - value of the field c
 ```
 
-Note that the object fields are encoded in order, first the first, then the 
-second, then third, and so on.
+Note that the object fields are encoded in order, first the first, then second, 
+then third, and so on.
 
 # Motivation
 This approach provides:
