@@ -97,19 +97,37 @@ This approach provides:
   true    MUS->    [1]
   false    MUS->    [0]
   ```
-- Pointers are encoded with the `nil` flag: the `nil` pointer is encoded as `1`,
-  not the `nil` pointer as `0` + pointer value.
+- Pointers are encoded with the pointer flag: the `nil` pointer is 
+  encoded as `1`, not `nil` as `0` + pointer value.
   ```
   nil    MUS->    [1]
   , where
-  - [1] - nil flag
+  - [1] - Nil pointer flag
   ```
   ```
   &"hello world"    MUS->    [0 22 104 101 108 108 111 32 119 111 114 108 100]
   , where
-  - [0] - nil flag
+  - [0] - Not Nil pointer flag
   - [22] - length of the string
   - [104 101 108 108 111 32 119 111 114 108 100] - string
+  ```
+  Also, not nil pointer can be encoded with the Mapping pointer flag. In this 
+  case, all occurrences of the pointer are encoded as `2` + pointer ID (varint),
+  and only the first one contains + pointer value.
+  ```
+  ptr1 = &10
+  ptr2 = &20
+  list = {ptr1, ptr1, ptr2}     MUS->     [6 2 0 20 2 0 2 2 40]
+  , where
+  - [6] - length of the list
+  - [2] - Mapping pointer flag
+  - [0] - ptr1 ID
+  - [20] - ptr1 value
+  - [2] - Mapping pointer flag
+  - [0] - ptr1 ID
+  - [2] - Mapping pointer flag
+  - [2] - ptr2 ID
+  - [40] - ptr2 value
   ```
 
 # Data Type Metadata (DTM)
