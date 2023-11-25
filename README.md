@@ -1,5 +1,5 @@
 # MUS Serialization Format
-MUS (**M**arshal, **U**nmarshal, **S**ize) format, which by the way is a 
+MUS (Marshal, Unmarshal, Size) format, which by the way is a 
 binary format, tries to be as simple as possible. You won't find field names, 
 types or any other information in it besides values (with few exceptions, such 
 as the 'nil' pointer flag and length for variable-length data types). So, for 
