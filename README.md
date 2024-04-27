@@ -113,7 +113,7 @@ This approach provides:
   ```
   Also, not nil pointer can be encoded with the Mapping pointer flag. In this 
   case, all occurrences of the pointer are encoded as `2` + pointer ID (varint),
-  and only the first one contains + pointer value.
+  and only the first one contains pointer value.
   ```
   ptr1 = &10
   ptr2 = &20
