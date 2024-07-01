@@ -1,9 +1,9 @@
 # MUS Serialization Format
-MUS (Marshal, Unmarshal, Size) format, which by the way is a 
-binary format, tries to be as simple as possible. You won't find field names, 
-types or any other information in it besides values (with few exceptions, such 
-as the 'nil' pointer flag and length for variable-length data types). So, for 
-example, an object of type `Foo`:
+MUS (Marshal, Unmarshal, Size) format, which by the way is a binary format, 
+tries to be as simple as possible. You won't find field names, types or any 
+other information in it besides values (with few exceptions, such as the 'nil' 
+pointer flag and length for variable-length data types). So, for example, an 
+object of type `Foo`:
 ```
 type Foo {
   a int
@@ -64,8 +64,11 @@ This approach provides:
   - absent - for `uint8`, both encodings use one byte for `uint8` numbers
 
 - ZigZag encoding is used for signed to unsigned integer mapping.
-- Strings and lists are encoded with length (`int` type) and values, maps -
-  with length and key/value pairs.
+- Positive integers, such as the length of a string, can be Varint encoded 
+  without ZigZag.
+- Strings and lists are encoded with length (`int` type, whose encoding is not 
+  fixed - it can be Varint or Raw) and values, maps - with length and key/value 
+  pairs.
   ```
   string = "hello world"    MUS->    [22 104 101 108 108 111 32 119 111 114 108 100]
   , where
