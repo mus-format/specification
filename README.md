@@ -127,8 +127,8 @@ This approach provides:
   ```
 
 # Data Type Metadata (DTM)
-To decode data, we need to know its type. To explicitly indicate it, use a DTM,
-which can simply be a number:
+To decode data, we need to know its type. To explicitly indicate it, use a DTM, 
+which can simply be placed in front of the data:
 ```
 DTM + data
 ```
