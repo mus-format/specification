@@ -50,6 +50,7 @@ This approach provides:
   - `int32, uint32, float32` - 4 bytes.
   - `int16, uint16` - 2 bytes.
   - `int8, uint8` - 1 byte.
+  - 
   Only for large numbers it becomes more profitable than Varint, both in speed 
   and in the number of used bytes. These "large numbers", for `uint` types, are:
   - \> 2^56 - for `uint64`.
