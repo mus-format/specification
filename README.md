@@ -1,9 +1,8 @@
 # MUS Serialization Format
 MUS (Marshal, Unmarshal, Size) is a binary serialization format that tries to 
-be as simple as possible. It does not include field names, types, or any 
-additional metadata, except for a few cases: pointers are preceded by a pointer 
-flag, and variable-length data types are preceded by length. For example, an 
-object of type `Foo`:
+be as simple as possible. It contains almost no metadata (neither field names 
+nor types), except for a pointer flag and a length prefix for variable-length 
+data types. For example, an object of type `Foo`:
 ```
 type Foo {
   a int
@@ -56,7 +55,7 @@ This approach provides:
   - \> 2^56 - for `uint64`.
   - \> 2^28 - for `uint32`.
   - \> 2^14 - for `uint16`.
-  - Absent - both encodings use one byte for `uint8` numbers.
+  - Absent - for `uint8`, both encodings use one byte.
 - ZigZag encoding is used for signed to unsigned integer mapping.
 - Positive integers, such as the length of a string, can be Varint encoded 
   without using ZigZag.
