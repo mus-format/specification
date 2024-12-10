@@ -1,8 +1,8 @@
 # MUS Serialization Format
 MUS (Marshal, Unmarshal, Size) is a binary serialization format that tries to 
-be as simple as possible. It contains almost no metadata (neither field names 
-nor types), except for a pointer flag and a length prefix for variable-length 
-data types. For example, an object of type `Foo`:
+be as simple as possible. You will find almost no metadata in it (neither 
+field names nor types), except for a pointer flag and a length prefix for 
+variable-length data types. For example, an object of type `Foo`:
 ```
 type Foo {
   a int
