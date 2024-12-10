@@ -133,7 +133,7 @@ DTM + data
 ```
 
 # Data Versioning
-The MUS format does not support data versioning. However, this can be achieved 
+The MUS format does not support data versioning. However, it can be implemented 
 using DTMs:
 ```
 // In this case DTM indicates both the data type and version.
