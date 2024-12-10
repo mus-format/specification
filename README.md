@@ -126,7 +126,8 @@ This approach provides:
   ```
 
 # Data Type Metadata (DTM)
-To decode data, its type must be known. DTM is used to explicitly identify it:
+To decode data, its type must be known. DTM can be used to explicitly identify 
+it:
 ```
 DTM + data
 ```
