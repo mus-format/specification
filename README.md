@@ -126,15 +126,14 @@ This approach provides:
   ```
 
 # Data Type Metadata (DTM)
-To decode data, we need to know its type. To explicitly indicate it, use a DTM, 
-which can simply be placed in front of the data:
+To decode data, its type must be known. DTM is used to explicitly identify it:
 ```
 DTM + data
 ```
 
 # Data Versioning
-The MUS format does not support data versioning. However, it can be achieved 
-using a DTM:
+The MUS format does not support data versioning. However, this can be achieved 
+using DTMs:
 ```
 // In this case DTM indicates both the data type and version.
 const FooV1DTM = 1
@@ -158,11 +157,11 @@ switch dtm {
     return ErrUnexpectedDTM
 }
 ```
-Moreover, it is highly recommended to use a DTM. With it, you will always be 
-prepared for changes in the type structure or the MUS format itself.
+With this approach, there is only one "version" mark for the entire type, 
+instead of separate "version" marks for each field.
 
-Thus, the MUS format suggests having only one "version" mark for the entire 
-type, instead of separate "version" marks for each field.
+It is highly recommended to use DTM. With it, you will always be prepared for 
+changes in the type structure or the MUS format itself.
 
 # Streaming
 MUS format is suitable for streaming, all we need to know for this is the data 
