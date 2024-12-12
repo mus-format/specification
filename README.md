@@ -2,7 +2,7 @@
 MUS (Marshal, Unmarshal, Size) is a binary serialization format that tries to 
 be as simple as possible. You will find almost no metadata in it (neither 
 field names nor types), except for a pointer flag and a length prefix for 
-variable-length data types. For example, an object of type `Foo`:
+variable-length data types. An object of type `Foo`:
 ```
 type Foo {
   a int
@@ -10,7 +10,7 @@ type Foo {
   c string
 }
 ```
-in the MUS format may look like this:
+, for example, in the MUS format may look like this:
 ```
 Foo{a: 300, b: true, c: "hi"}    MUS->    [216 4 1 4 104 105]
 , where 
