@@ -108,7 +108,8 @@ This approach provides:
   ```
   The value `2` of the pointer flag denotes the pointer mapping. In this case, 
   all occurrences of the pointer are encoded as `2` followed by the pointer ID 
-  (Varint), with only the first occurrence containing the pointer value.
+  (Varint without ZigZag), with only the first occurrence containing the pointer 
+  value.
   ```
   ptr1 = &10
   ptr2 = &20
